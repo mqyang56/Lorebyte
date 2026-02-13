@@ -8,8 +8,8 @@ Lorebyte reads your staged changes, sends the diff to an LLM, and writes a [Conv
 
 - **One-click commit messages** — click the Lorebyte icon in the Source Control title bar or run the command from the palette
 - **Conventional Commits** — generates messages following the `<type>(<scope>): <description>` format
-- **Multi-language** — commit messages can be generated in any language
-- **Model selection** — browse and switch between available models on the fly
+- **Chinese / English** — commit messages can be generated in Chinese or English
+- **Model selection** — browse and switch between available models via API
 - **Configurable provider** — ships with [OpenCode Zen](https://opencode.ai/docs/zen/) support, extensible via a provider registry
 
 ## Quick Start
@@ -26,17 +26,17 @@ The generated message appears in the commit input box, ready to commit.
 | Command | Description |
 |---------|-------------|
 | `Lorebyte: Generate Commit Message` | Generate a commit message from staged changes |
-| `Lorebyte: List Available Models` | Browse remote models and switch the active model |
+| `Lorebyte: List Available Models` | Browse remote models and switch the active model (requires API key) |
 
 ## Settings
 
 | Setting | Default | Description |
 |---------|---------|-------------|
 | `lorebyte.provider` | `opencode-zen` | LLM provider ID |
-| `lorebyte.model` | `kimi-k2.5-free` | Model ID for generating commit messages |
+| `lorebyte.model` | `minimax-m2.5-free` | Model ID for generating commit messages |
 | `lorebyte.apiKey` | — | API key for the LLM provider |
 | `lorebyte.apiBaseUrl` | `https://opencode.ai/zen/v1/chat/completions` | API endpoint URL |
-| `lorebyte.language` | `English` | Language for generated commit messages |
+| `lorebyte.language` | `English` | Language for generated commit messages (`English` / `Chinese`) |
 
 ## Development
 

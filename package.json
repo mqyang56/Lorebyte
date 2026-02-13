@@ -72,6 +72,11 @@
         "lorebyte.language": {
           "type": "string",
           "default": "English",
+          "enum": ["English", "Chinese"],
+          "enumDescriptions": [
+            "Generate commit messages in English",
+            "Generate commit messages in Chinese (中文)"
+          ],
           "description": "Language for generated commit messages"
         }
       }

@@ -1,8 +1,11 @@
 .vscode/
+.claude/
 src/
 node_modules/
 .gitignore
 tsconfig.json
 esbuild.js
+images/icon.svg
+*.vsix
 **/*.map
 **/*.ts

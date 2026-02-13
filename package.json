@@ -1,0 +1,86 @@
+{
+  "name": "lorebyte",
+  "displayName": "Lorebyte",
+  "description": "AI-powered git commit message generator",
+  "version": "0.0.1",
+  "publisher": "mqyang56",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "SCM Providers",
+    "Machine Learning"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "extensionDependencies": [
+    "vscode.git"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "lorebyte.generateCommitMessage",
+        "title": "Lorebyte: Generate Commit Message",
+        "icon": {
+          "light": "images/lorebyte-light.svg",
+          "dark": "images/lorebyte-dark.svg"
+        }
+      },
+      {
+        "command": "lorebyte.listModels",
+        "title": "Lorebyte: List Available Models"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "lorebyte.generateCommitMessage",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Lorebyte",
+      "properties": {
+        "lorebyte.provider": {
+          "type": "string",
+          "default": "opencode-zen",
+          "description": "LLM provider ID"
+        },
+        "lorebyte.model": {
+          "type": "string",
+          "default": "kimi-k2.5-free",
+          "description": "Model ID to use for generating commit messages"
+        },
+        "lorebyte.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for the LLM provider"
+        },
+        "lorebyte.apiBaseUrl": {
+          "type": "string",
+          "default": "https://opencode.ai/zen/v1/chat/completions",
+          "description": "API endpoint URL"
+        },
+        "lorebyte.language": {
+          "type": "string",
+          "default": "English",
+          "description": "Language for generated commit messages"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.3.0"
+  }
+}

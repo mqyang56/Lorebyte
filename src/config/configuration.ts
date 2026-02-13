@@ -12,7 +12,7 @@ export function getConfig(): LorebyteConfig {
   const cfg = vscode.workspace.getConfiguration("lorebyte");
   return {
     provider: cfg.get<string>("provider", "opencode-zen"),
-    model: cfg.get<string>("model", "kimi-k2.5-free"),
+    model: cfg.get<string>("model", "minimax-m2.5-free"),
     apiKey: cfg.get<string>("apiKey", ""),
     apiBaseUrl: cfg.get<string>(
       "apiBaseUrl",

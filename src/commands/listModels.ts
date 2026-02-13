@@ -1,19 +1,22 @@
 import * as vscode from "vscode";
 import { providerRegistry } from "../providers/providerRegistry";
-import { OpenCodeZenProvider } from "../providers/openCodeZenProvider";
 import { getConfig } from "../config/configuration";
 
 export async function listModels(): Promise<void> {
   const config = getConfig();
   const provider = providerRegistry.get(config.provider);
 
-  if (!(provider instanceof OpenCodeZenProvider)) {
-    vscode.window.showErrorMessage("Lorebyte: Current provider does not support listing models.");
+  if (!provider) {
+    vscode.window.showErrorMessage(
+      `Lorebyte: Unknown provider "${config.provider}".`
+    );
     return;
   }
 
   if (!config.apiKey) {
-    vscode.window.showErrorMessage("Lorebyte: API key is required to list models.");
+    vscode.window.showErrorMessage(
+      "Lorebyte: API key is required to list models."
+    );
     return;
   }
 
@@ -27,7 +30,9 @@ export async function listModels(): Promise<void> {
     );
 
     if (models.length === 0) {
-      vscode.window.showWarningMessage("Lorebyte: No models returned from API.");
+      vscode.window.showWarningMessage(
+        "Lorebyte: No models returned from API."
+      );
       return;
     }
 
@@ -39,7 +44,9 @@ export async function listModels(): Promise<void> {
       await vscode.workspace
         .getConfiguration("lorebyte")
         .update("model", picked, vscode.ConfigurationTarget.Global);
-      vscode.window.showInformationMessage(`Lorebyte: Model set to "${picked}"`);
+      vscode.window.showInformationMessage(
+        `Lorebyte: Model set to "${picked}"`
+      );
     }
   } catch (err) {
     vscode.window.showErrorMessage(

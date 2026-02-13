@@ -23,11 +23,11 @@ export interface ChatCompletionResponse {
 export interface LLMProvider {
   readonly id: string;
   readonly displayName: string;
-  getModels(): string[];
   chatCompletion(
     options: ChatCompletionOptions,
     apiKey: string,
     baseUrl: string
   ): Promise<ChatCompletionResponse>;
+  fetchRemoteModels(apiKey: string, baseUrl: string): Promise<string[]>;
   validateConfig(apiKey: string, baseUrl: string): string | undefined;
 }

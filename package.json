@@ -56,8 +56,8 @@
         },
         "lorebyte.model": {
           "type": "string",
-          "default": "kimi-k2.5-free",
-          "description": "Model ID to use for generating commit messages"
+          "default": "minimax-m2.5-free",
+          "description": "Model ID to use for generating commit messages. Use 'Lorebyte: List Available Models' command to browse and select."
         },
         "lorebyte.apiKey": {
           "type": "string",

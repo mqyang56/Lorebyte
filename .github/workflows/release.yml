@@ -17,6 +17,11 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Sync version from tag
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          npm version "$TAG_VERSION" --no-git-tag-version
+
       - run: npm ci
 
       - name: Lint

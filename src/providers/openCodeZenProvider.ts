@@ -54,16 +54,6 @@ export class OpenCodeZenProvider implements LLMProvider {
   readonly id = "opencode-zen";
   readonly displayName = "OpenCode Zen";
 
-  getModels(): string[] {
-    return [
-      "kimi-k2.5-free",
-      "kimi-k2.5",
-      "gpt-5.2-codex",
-      "gpt-5.1-codex",
-      "minimax-m2.5-free",
-    ];
-  }
-
   validateConfig(apiKey: string, baseUrl: string): string | undefined {
     if (!apiKey) {
       return "API key is required. Set it in Settings → Lorebyte → Api Key.";

@@ -1,5 +1,7 @@
 # Lorebyte
 
+[English](README.md) | [中文](README_zh.md)
+
 AI-powered git commit message generator for VS Code.
 
 Lorebyte reads your staged changes, sends the diff to an LLM, and writes a [Conventional Commits](https://www.conventionalcommits.org/) message directly into the Source Control input box — one click, done.
@@ -7,6 +9,7 @@ Lorebyte reads your staged changes, sends the diff to an LLM, and writes a [Conv
 ## Features
 
 - **One-click commit messages** — click the Lorebyte icon in the Source Control title bar or run the command from the palette
+- **Smart generation** — if the commit input box is empty, generates a message from scratch; if it already contains text, refines and optimizes the existing message based on the staged diff
 - **Conventional Commits** — generates messages following the `<type>(<scope>): <description>` format
 - **Chinese / English** — commit messages can be generated in Chinese or English
 - **Model selection** — browse and switch between available models via API

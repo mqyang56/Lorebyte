@@ -53,6 +53,11 @@ export class GitService {
     return diff;
   }
 
+  getCommitMessage(): string {
+    const repo = this.getRepository();
+    return repo.inputBox.value;
+  }
+
   setCommitMessage(message: string): void {
     const repo = this.getRepository();
     repo.inputBox.value = message;

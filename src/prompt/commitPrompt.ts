@@ -40,7 +40,13 @@ Available types:
 Respond with ONLY the commit message, nothing else. No quotes, no markdown, no explanation.`;
 }
 
-export function buildUserPrompt(diff: string): string {
+export function buildUserPrompt(
+  diff: string,
+  currentMessage?: string
+): string {
   const truncated = truncateDiff(diff);
+  if (currentMessage) {
+    return `The current commit message is:\n\n${currentMessage}\n\nOptimize and refine this commit message based on the staged changes below. Keep the original intent but improve clarity, accuracy, and adherence to Conventional Commits format.\n\n\`\`\`diff\n${truncated}\n\`\`\``;
+  }
   return `Generate a commit message for the following staged changes:\n\n\`\`\`diff\n${truncated}\n\`\`\``;
 }

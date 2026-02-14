@@ -55,12 +55,19 @@ export async function generateCommitMessage(): Promise<void> {
     },
     async () => {
       try {
+        const currentMessage = gitService.getCommitMessage().trim();
         const response = await provider.chatCompletion(
           {
             model: config.model,
             messages: [
               { role: "system", content: buildSystemPrompt(config.language) },
-              { role: "user", content: buildUserPrompt(diff) },
+              {
+                role: "user",
+                content: buildUserPrompt(
+                  diff,
+                  currentMessage || undefined
+                ),
+              },
             ],
           },
           config.apiKey,

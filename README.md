@@ -25,6 +25,8 @@ The generated message appears in the commit input box, ready to commit.
 
 > **No API key needed to get started.** Lorebyte ships with a built-in free key so you can use it immediately. To unlock all available models, set your own API key in Settings: **Lorebyte > Api Key**.
 
+![Lorebyte in action](images/example.png)
+
 ## Commands
 
 | Command | Description |

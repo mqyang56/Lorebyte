@@ -18,18 +18,19 @@ Lorebyte 读取你的暂存更改，将 diff 发送给 LLM，然后将符合 [Co
 ## 快速开始
 
 1. 安装扩展
-2. 在设置中配置 API Key：**Lorebyte > Api Key**
-3. 在 git 中暂存一些更改
-4. 点击源代码管理标题栏中的 Lorebyte 图标（或在命令面板中运行 `Lorebyte: Generate Commit Message`）
+2. 在 git 中暂存一些更改
+3. 点击源代码管理标题栏中的 Lorebyte 图标（或在命令面板中运行 `Lorebyte: Generate Commit Message`）
 
 生成的提交信息会出现在提交输入框中，可以直接提交。
+
+> **无需配置即可上手。** Lorebyte 内置了免费 key，安装后可直接使用。如需切换其他模型，请在设置中填入自己的 API Key：**Lorebyte > Api Key**。
 
 ## 命令
 
 | 命令 | 说明 |
 |------|------|
 | `Lorebyte: Generate Commit Message` | 根据暂存更改生成提交信息 |
-| `Lorebyte: List Available Models` | 浏览远程模型并切换当前使用的模型（需要 API Key） |
+| `Lorebyte: List Available Models` | 浏览远程模型并切换当前使用的模型（需要个人 API Key） |
 
 ## 设置
 
@@ -37,7 +38,7 @@ Lorebyte 读取你的暂存更改，将 diff 发送给 LLM，然后将符合 [Co
 |--------|--------|------|
 | `lorebyte.provider` | `opencode-zen` | LLM Provider ID |
 | `lorebyte.model` | `minimax-m2.5-free` | 用于生成提交信息的模型 ID |
-| `lorebyte.apiKey` | — | LLM Provider 的 API Key |
+| `lorebyte.apiKey` | — | 你的个人 API Key，留空时使用内置免费 key（仅限默认模型）。 |
 | `lorebyte.apiBaseUrl` | `https://opencode.ai/zen/v1/chat/completions` | API 端点 URL |
 | `lorebyte.language` | `English` | 生成提交信息的语言（`English` / `Chinese`） |
 
@@ -68,26 +69,6 @@ npm run lint
 ```
 
 在 VS Code 中按 **F5** 启动扩展开发宿主，加载该扩展进行调试。
-
-## 项目结构
-
-```
-src/
-├── extension.ts              # 入口文件 — 注册命令和 Provider
-├── commands/
-│   ├── generateCommitMessage.ts  # 核心流程：diff → LLM → 提交信息
-│   └── listModels.ts             # 浏览和选择模型
-├── config/
-│   └── configuration.ts         # 读取 VS Code 设置
-├── git/
-│   └── gitService.ts            # 通过 VS Code Git API 获取暂存 diff 和提交信息
-├── prompt/
-│   └── commitPrompt.ts          # 系统提示词和用户提示词构建
-└── providers/
-    ├── types.ts                 # LLMProvider 接口和消息类型
-    ├── providerRegistry.ts      # Provider 注册表模式
-    └── openCodeZenProvider.ts   # OpenCode Zen 实现
-```
 
 ## 许可证
 

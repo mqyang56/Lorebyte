@@ -18,18 +18,19 @@ Lorebyte reads your staged changes, sends the diff to an LLM, and writes a [Conv
 ## Quick Start
 
 1. Install the extension
-2. Set your API key in Settings: **Lorebyte > Api Key**
-3. Stage some changes in git
-4. Click the Lorebyte icon in the Source Control title bar (or run `Lorebyte: Generate Commit Message` from the Command Palette)
+2. Stage some changes in git
+3. Click the Lorebyte icon in the Source Control title bar (or run `Lorebyte: Generate Commit Message` from the Command Palette)
 
 The generated message appears in the commit input box, ready to commit.
+
+> **No API key needed to get started.** Lorebyte ships with a built-in free key so you can use it immediately. To unlock all available models, set your own API key in Settings: **Lorebyte > Api Key**.
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
 | `Lorebyte: Generate Commit Message` | Generate a commit message from staged changes |
-| `Lorebyte: List Available Models` | Browse remote models and switch the active model (requires API key) |
+| `Lorebyte: List Available Models` | Browse remote models and switch the active model (requires a personal API key) |
 
 ## Settings
 
@@ -37,7 +38,7 @@ The generated message appears in the commit input box, ready to commit.
 |---------|---------|-------------|
 | `lorebyte.provider` | `opencode-zen` | LLM provider ID |
 | `lorebyte.model` | `minimax-m2.5-free` | Model ID for generating commit messages |
-| `lorebyte.apiKey` | — | API key for the LLM provider |
+| `lorebyte.apiKey` | — | Your personal API key. Leave empty to use the built-in free key (default model only). |
 | `lorebyte.apiBaseUrl` | `https://opencode.ai/zen/v1/chat/completions` | API endpoint URL |
 | `lorebyte.language` | `English` | Language for generated commit messages (`English` / `Chinese`) |
 
@@ -68,26 +69,6 @@ npm run lint
 ```
 
 Press **F5** in VS Code to launch an Extension Development Host with the extension loaded.
-
-## Project Structure
-
-```
-src/
-├── extension.ts              # Entry point — registers commands & providers
-├── commands/
-│   ├── generateCommitMessage.ts  # Core workflow: diff → LLM → commit message
-│   └── listModels.ts             # Browse and select models
-├── config/
-│   └── configuration.ts         # Reads VS Code settings
-├── git/
-│   └── gitService.ts            # Staged diff & commit message via VS Code Git API
-├── prompt/
-│   └── commitPrompt.ts          # System & user prompt construction
-└── providers/
-    ├── types.ts                 # LLMProvider interface & message types
-    ├── providerRegistry.ts      # Registry pattern for providers
-    └── openCodeZenProvider.ts   # OpenCode Zen implementation
-```
 
 ## License
 

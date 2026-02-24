@@ -25,6 +25,8 @@ Lorebyte 读取你的暂存更改，将 diff 发送给 LLM，然后将符合 [Co
 
 > **无需配置即可上手。** Lorebyte 内置了免费 key，安装后可直接使用。如需切换其他模型，请在设置中填入自己的 API Key：**Lorebyte > Api Key**。
 
+![Lorebyte 使用示例](images/example.png)
+
 ## 命令
 
 | 命令 | 说明 |

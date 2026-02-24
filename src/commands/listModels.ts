@@ -13,10 +13,14 @@ export async function listModels(): Promise<void> {
     return;
   }
 
-  if (!config.apiKey) {
-    vscode.window.showErrorMessage(
-      "Lorebyte: API key is required to list models."
+  if (config.isUsingDefaultKey) {
+    const action = await vscode.window.showInformationMessage(
+      "Lorebyte: You're using the built-in free key, which is locked to the default model. Set your own API key in Settings to browse and switch models.",
+      "Open Settings"
     );
+    if (action === "Open Settings") {
+      vscode.commands.executeCommand("workbench.action.openSettings", "lorebyte.apiKey");
+    }
     return;
   }
 

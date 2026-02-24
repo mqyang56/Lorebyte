@@ -1,11 +1,16 @@
 import * as vscode from "vscode";
 import { GitService } from "../git/gitService";
 import { providerRegistry } from "../providers/providerRegistry";
-import { getConfig } from "../config/configuration";
+import { getConfig, DEFAULT_MODEL } from "../config/configuration";
 import { buildSystemPrompt, buildUserPrompt } from "../prompt/commitPrompt";
 
 export async function generateCommitMessage(): Promise<void> {
   const config = getConfig();
+
+  // When the built-in fallback key is active, lock to the default model.
+  if (config.isUsingDefaultKey) {
+    config.model = DEFAULT_MODEL;
+  }
 
   const provider = providerRegistry.get(config.provider);
   if (!provider) {

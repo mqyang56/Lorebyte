@@ -9,6 +9,7 @@ interface GitAPI {
 }
 
 interface Repository {
+  rootUri: vscode.Uri;
   inputBox: { value: string };
   diff(cached: boolean): Promise<string>;
   state: {
@@ -34,6 +35,21 @@ export class GitService {
     if (api.repositories.length === 0) {
       throw new Error("No git repository found in workspace");
     }
+
+    // When submodules are present, api.repositories contains both the root repo
+    // and each submodule as separate entries. Find the one whose rootUri matches
+    // the current workspace folder to avoid operating on a submodule repo.
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (workspaceFolders && workspaceFolders.length > 0) {
+      const workspaceRoot = workspaceFolders[0].uri.fsPath;
+      const matched = api.repositories.find(
+        (r) => r.rootUri.fsPath === workspaceRoot
+      );
+      if (matched) {
+        return matched;
+      }
+    }
+
     return api.repositories[0];
   }
 

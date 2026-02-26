@@ -40,15 +40,11 @@ export class GitService {
   async getStagedDiff(): Promise<string> {
     const repo = this.getRepository();
 
-    if (repo.state.indexChanges.length === 0) {
+    const diff = await repo.diff(true);
+    if (!diff) {
       throw new Error(
         "No staged changes found. Stage some changes before generating a commit message."
       );
-    }
-
-    const diff = await repo.diff(true);
-    if (!diff) {
-      throw new Error("Staged diff is empty");
     }
     return diff;
   }
